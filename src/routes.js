@@ -1,23 +1,20 @@
-import { Router } from 'express'
-import multer from 'multer'
-import multerConfig from './config/multer'
-import authMiddleware from './app/middlewares/auth'
+import { Router } from 'express';
+import multer from 'multer';
+import multerConfig from './config/multer';
+import authMiddleware from './app/middlewares/auth';
 
-import UserController from './app/controllers/UserController'
-import SessionController from './app/controllers/SessionController'
-import ProductController from './app/controllers/ProductController'
-import CategoryController from './app/controllers/CategoryController'
-import OrderController from './app/controllers/OrderController'
+import UserController from './app/controllers/UserController';
+import SessionController from './app/controllers/SessionController';
+import ProductController from './app/controllers/ProductController';
+import CategoryController from './app/controllers/CategoryController';
+import OrderController from './app/controllers/OrderController';
 
-const routes = new Router()
+const routes = new Router();
 
-const upload = multer(multerConfig)
-
-
+const upload = multer(multerConfig);
 
 routes.post('/users', UserController.store); //cadastro
 routes.post('/session', SessionController.store); //login
-
 
 routes.use(authMiddleware);
 routes.post('/products', upload.single('file'), ProductController.store);
@@ -32,8 +29,7 @@ routes.post('/orders', OrderController.store);
 routes.get('/orders', OrderController.index);
 routes.put('/orders/:id', OrderController.update);
 
-
-export default routes
+export default routes;
 
 /**
  * request -> middleware -> controller -> model -> database -> response

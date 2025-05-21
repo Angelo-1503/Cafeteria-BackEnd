@@ -2,46 +2,42 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    
-     await queryInterface.createTable('products', {
-       id: {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('products', {
+      id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-       },
-       name: {
+      },
+      name: {
         type: Sequelize.STRING,
         allowNull: false,
-       },
-       price: {
+      },
+      price: {
         type: Sequelize.INTEGER,
         allowNull: false,
-       },
-       category: {
+      },
+      category: {
         type: Sequelize.STRING,
         allowNull: false,
-       },
-       path: {
+      },
+      path: {
         type: Sequelize.STRING,
         allowNull: false,
-       },
-       created_at: {
+      },
+      created_at: {
         type: Sequelize.DATE,
         allowNull: false,
-       },
-       updated_at: {
+      },
+      updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
-       },
-      });
-     
+      },
+    });
   },
 
-  async down (queryInterface) {
-    
-      await queryInterface.dropTable('products');
-     
-  }
+  async down(queryInterface) {
+    await queryInterface.dropTable('products');
+  },
 };

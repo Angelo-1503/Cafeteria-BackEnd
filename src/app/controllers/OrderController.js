@@ -83,17 +83,17 @@ class OrderController {
 
     const { admin: isAdmin } = await User.findByPk(req.userId);
 
-        if (!isAdmin) {
-            return res.status(401).json();
-        }
+    if (!isAdmin) {
+      return res.status(401).json();
+    }
 
     const { id } = req.params;
     const { status } = req.body;
 
-    try{
-        await Order.updateOne({_id: id}, { status });
-    }catch(err){
-        return res.status(400).json({ error: err.message });
+    try {
+      await Order.updateOne({ _id: id }, { status });
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
     }
     return res.json({ message: 'Pedido atualizado com sucesso' });
   }

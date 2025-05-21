@@ -69,8 +69,6 @@ class CategoryController {
 
     const { name } = req.body;
 
-    
-
     if (name) {
       const categoryNameExists = await Category.findOne({ where: { name } });
 
